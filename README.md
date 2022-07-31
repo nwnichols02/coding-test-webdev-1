@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+# Coding Test for Web Dev 1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the shell application for this portion of the UtiliSource coding test you have been asked to complete. This test is designed to represent a task common to the requirements of the web developer position, specifically,
 
-## Available Scripts
+1. Retrieve an array of data from an API.
+2. Display it in a table.
+3. Click on a table row to display a detail of the row.
 
-In the project directory, you can run:
+The test is intentionally designed with a lot of latitude for personal choices. You are being given only broad requirements so that you can show your coding style and design aesthetic.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone this repository to a local folder. The application was created using create-react-app. Run **npm install** per a typical React project initialization.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Open *App.js* and find the function *authHdr()* near the bottom. Replace *your_access_token_here* with the token you were sent in the coding test email. Do not add any spaces.
 
-### `npm test`
+Scroll down to the function *apiBaseUrl()* and replace *api_base_url_goes_here* with the api url included in the email. Do not add a trailing slash "/".
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Start the app with the usual **npm start** command.
 
-### `npm run build`
+Your browser should open to localhost:3000 and display a black screen with some welcoming text and a two buttons.  Display dev tools so you can see console log output.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Click the button **Can Get Links**. In 5 to 10 seconds (up to a minute if the remote API hasn't been invoked for a couple hours), you should see a console output like this,
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`Success. Retrieved 1 channel and 248 video links`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you get an error, double check that you entered both your token and the API url in the functions described above.
 
-### `npm run eject`
+Click the button **Can Get Link Detail**. You should quickly see the following console output,
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`Success. Retrieved link detail for linkId=62e59bc354f7a3bac5c47b9e, title: Hiking gear: what to bring? | Salomon How-To`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Assuming you received the two two success messages in your console log, you have confirmed you can reach the coding test api and are ready to continue.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If you did not receive the success messages, get in touch ASAP so that we can get you going. Resolving API access is not part of the coding test. The two functions, *apiGetChannelLinks()* and *apiGetLinkDetail()* are intended to give you access to the API and you should use them for data retrieval.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Coding Test Requirements
 
-## Learn More
+The data the API returns contains a series of links to YouTube videos for the Salomon TV channel. (That is why the Channels array contains only one element.) The data is for purposes of the coding test and has nothing to do with actual UtiliSource data. Note that the links are being retrieved from a database and will not change.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Here are the requirements to implement for the test:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### React
 
-### Code Splitting
+Implement your solution using React. If you know TypeScript, you can incorporate it, its use is not a requirement.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Include any packages, snippets, libraries, etc. that you want. Meet the functional requirements first (tabular display, detail display, sort order, date conversions, hyperlinks to open new tabs, etc.). Refine the design if you have time.
 
-### Analyzing the Bundle Size
+### Tabular Display of Data
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Render the links data in a table. The table should have column headers. Include the following columns in this order (left to right): Published, Title, Source, SourceTye, URL.
 
-### Making a Progressive Web App
+The data property *Publishedts* is a Unix Epoch UTC timestamp in **seconds**. Convert it to browser (user's) local time and display as a user-friendly date-time string.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Sort the data by Published timestamp, oldest to newest. Do not assume the API will return data pre-sorted.
 
-### Advanced Configuration
+Clicking on the URL should open the video in a seaparate browser tab or window.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+NOTE: The *ID* property is an internal identifier and can be relied on to be unique per link item.
 
-### Deployment
+### Detail Display
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Implement a feature to click on a row to display a modal or popup containing a detail of the video link contained in that row.
 
-### `npm run build` fails to minify
+Detail data should be loaded on-demand, meaning, when the row is clicked, a call is then made to the API to retrieve the detail for that row. (Details should not be fetched in advance.)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Display the following fields in the detail screen. The order and layout is your choice:
+
+Title
+SourceTimestamp (display in user-friendly date-time same as Publishedts)
+Full Description
+Thumbnail Image  --obtained via ThumbURL
+Source
+SourceChannelName  --support clicking this to open SourceChannelUrl in new tab
+
+Support clicking a control or element in the detail to open the video in a new tab. Video url is contained in teh URL link property.
+
+The rows of the table should remain visible so that clicking another row closes the current row's detail and opens a new detail.
+
+Include a way to close an open detail and return to full table visibility with no details open.
+
+## Request Throttling Limits
+
+The API enforces a request throttling limit that prohibits additional requests after a limit value is reached. Throttling is done per-minute and resets at the beginning of the next minute. "Minutes" are wall-clock minutes, not elapsed minutes. Meaning, if you are in minute 12:01 and hit your request limit, your counter resets at 12:02. 
+
+Requests are cumulative across all API calls. Calls to *apiGetChannelLinks()* and *apiGetLinkDetail()* both add to the current minute's request total.
+
+### Determine Request Limit
+This section of the coding test requires you to determine what the API's throttling limit is. You must do this programmatically in code. You can use any approach you like, as long as it is done automatically as opposed to having a user click a button to send each request. For one thing, what if the limit is 1,000 requests? A user will not be able to trigger that many requests.
+
+The API indicates request limit reached by returning and HTTP Status Code 429,
+
+`429 Too Many Requests`
+
+Your solution should include the value of the limit and the code you used to determine it.
+
+HINT: The limit is under 100 requests per minute. So if you haven't triggered it by the time you issue 100 requests during a single minute, something is wrong.
