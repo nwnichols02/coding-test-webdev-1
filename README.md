@@ -8,6 +8,8 @@ This repository contains the shell application for this portion of the UtiliSour
 
 The test is intentionally designed with a lot of latitude for personal choices. You are being given only broad requirements so that you can show your coding style and design aesthetic.
 
+There is also an analysis section to the test at the bottom.
+
 ## Getting Started
 
 Clone this repository to a local folder. The application was created using create-react-app. Run **npm install** per a typical React project initialization.
@@ -86,7 +88,9 @@ The API enforces a request throttling limit that prohibits additional requests a
 Requests are cumulative across all API calls. Calls to *apiGetChannelLinks()* and *apiGetLinkDetail()* both add to the current minute's request total.
 
 ### Determine Request Limit
-This section of the coding test requires you to determine what the API's throttling limit is. You must do this programmatically in code. You can use any approach you like, as long as it is done automatically as opposed to having a user click a button to send each request. For one thing, what if the limit is 1,000 requests? A user will not be able to trigger that many requests.
+It's common to have to call into a 3rd party API that is not under your control. Often these APIs are poorly documented and can demonstrate unexpected behavior. This section of the coding test simulates the steps you might take if you encounter throttling from an API and need to figure out what the throttling limit is.
+
+You must do this analysis programmatically in code. You can use any approach you like (click a button to run code, enter a specific URL route, run a one-time utility program, run a script, etc.), as long as it is done automatically as opposed to having a user manually initiate each request. For one thing, what if the limit is 1,000 requests? A person will not be able to trigger that many requests.
 
 The API indicates request limit reached by returning HTTP Status Code 429,
 
