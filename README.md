@@ -14,11 +14,11 @@ Clone this repository to a local folder. The application was created using creat
 
 Open *App.js* and find the function *authHdr()* near the bottom. Replace *your_access_token_here* with the token you were sent in the coding test email. Do not add any spaces.
 
-Scroll down to the function *apiBaseUrl()* and replace *api_base_url_goes_here* with the api url included in the email. Do not add a trailing slash "/".
+Scroll down to the function *apiBaseUrl()* and replace *api_base_url_goes_here* with the API url included in the email. Do not add a trailing slash "/".
 
 Start the app with the usual **npm start** command.
 
-Your browser should open to localhost:3000 and display a black screen with some welcoming text and a two buttons.  Display dev tools so you can see console log output.
+Your browser should open to localhost:3000 and display a black screen with some welcoming text and two buttons.  Display dev tools so you can see console log output.
 
 Click the button **Can Get Links**. In 5 to 10 seconds (up to a minute if the remote API hasn't been invoked for a couple hours), you should see a console output like this,
 
@@ -30,7 +30,7 @@ Click the button **Can Get Link Detail**. You should quickly see the following c
 
 `Success. Retrieved link detail for linkId=62e59bc354f7a3bac5c47b9e, title: Hiking gear: what to bring? | Salomon How-To`
 
-Assuming you received the two two success messages in your console log, you have confirmed you can reach the coding test api and are ready to continue.
+If you received the two success messages in your console log, then you have confirmed you can reach the coding test API and are ready to continue.
 
 If you did not receive the success messages, get in touch ASAP so that we can get you going. Resolving API access is not part of the coding test. The two functions, *apiGetChannelLinks()* and *apiGetLinkDetail()* are intended to give you access to the API and you should use them for data retrieval.
 
@@ -42,19 +42,19 @@ Here are the requirements to implement for the test:
 
 ### React
 
-Implement your solution using React. If you know TypeScript, you can incorporate it, its use is not a requirement.
+Implement your solution using React. If you know TypeScript, you can incorporate it, but its use is not a requirement and there is no penalty for not using TypeScript.
 
-Include any packages, snippets, libraries, etc. that you want. Meet the functional requirements first (tabular display, detail display, sort order, date conversions, hyperlinks to open new tabs, etc.). Refine the design if you have time.
+Include any packages, snippets, libraries, etc. that you want. Meet the functional requirements first (tabular display, detail display, sort order, date conversions, hyperlinks to open new tabs, etc.). Refine your UI design depnding on your available time.
 
 ### Tabular Display of Data
 
-Render the links data in a table. The table should have column headers. Include the following columns in this order (left to right): Published, Title, Source, SourceTye, URL.
+Render the links data in a table. The table should have column headers. Include the following columns in this order (left to right): Published, Title, Source, SourceType, URL.
 
 The data property *Publishedts* is a Unix Epoch UTC timestamp in **seconds**. Convert it to browser (user's) local time and display as a user-friendly date-time string.
 
-Sort the data by Published timestamp, oldest to newest. Do not assume the API will return data pre-sorted.
+Sort the data by Published timestamp, oldest at the top of the table, to newest at the bottom. Do not assume the API will return data pre-sorted.
 
-Clicking on the URL should open the video in a seaparate browser tab or window.
+Clicking on the URL should open the video in a separate browser tab (or window).
 
 NOTE: The *ID* property is an internal identifier and can be relied on to be unique per link item.
 
@@ -66,32 +66,32 @@ Detail data should be loaded on-demand, meaning, when the row is clicked, a call
 
 Display the following fields in the detail screen. The order and layout is your choice:
 
-Title
-SourceTimestamp (display in user-friendly date-time same as Publishedts)
-Full Description
-Thumbnail Image  --obtained via ThumbURL
-Source
-SourceChannelName  --support clicking this to open SourceChannelUrl in new tab
+1. Title
+2. SourceTimestamp (display in user-friendly date-time same as Publishedts)
+3. Full Description
+4. Thumbnail Image  --obtained via ThumbURL
+5. Source
+6. SourceChannelName  --support clicking this to open SourceChannelUrl in new tab
 
-Support clicking a control or element in the detail to open the video in a new tab. Video url is contained in teh URL link property.
+Support clicking a control or element in the detail to open the video in a new tab. Video url is contained in thh URL link property.
 
-The rows of the table should remain visible so that clicking another row closes the current row's detail and opens a new detail.
+Some visibility to the rows of the table should remain so that clicking another row closes the current row's detail and opens a new detail.
 
 Include a way to close an open detail and return to full table visibility with no details open.
 
 ## Request Throttling Limits
 
-The API enforces a request throttling limit that prohibits additional requests after a limit value is reached. Throttling is done per-minute and resets at the beginning of the next minute. "Minutes" are wall-clock minutes, not elapsed minutes. Meaning, if you are in minute 12:01 and hit your request limit, your counter resets at 12:02. 
+The API enforces a request throttling limit that prohibits additional requests after a limit value is reached. Throttling is done per-minute and resets at the beginning of the next minute. "Minutes" are wall-clock minutes, not elapsed minutes. Meaning, if you are in minute 12:01 and hit your request limit, the counter resets at 12:02. 
 
 Requests are cumulative across all API calls. Calls to *apiGetChannelLinks()* and *apiGetLinkDetail()* both add to the current minute's request total.
 
 ### Determine Request Limit
 This section of the coding test requires you to determine what the API's throttling limit is. You must do this programmatically in code. You can use any approach you like, as long as it is done automatically as opposed to having a user click a button to send each request. For one thing, what if the limit is 1,000 requests? A user will not be able to trigger that many requests.
 
-The API indicates request limit reached by returning and HTTP Status Code 429,
+The API indicates request limit reached by returning HTTP Status Code 429,
 
 `429 Too Many Requests`
 
 Your solution should include the value of the limit and the code you used to determine it.
 
-HINT: The limit is under 100 requests per minute. So if you haven't triggered it by the time you issue 100 requests during a single minute, something is wrong.
+HINT: The limit is less than 100 requests per minute. 
