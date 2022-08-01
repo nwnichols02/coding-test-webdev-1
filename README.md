@@ -81,7 +81,7 @@ Display the following fields in the detail screen. The order and layout is your 
 5. Source
 6. SourceChannelName  --support clicking this to open SourceChannelUrl in new tab
 
-Support clicking a control or element in the detail to open the video in a new tab. Video url is contained in thh URL link property.
+Support clicking a control or element in the detail to open the video in a new tab. Video url is contained in the URL link property.
 
 Some visibility to the rows of the table should remain so that clicking another row closes the current row's detail and opens a new detail.
 
