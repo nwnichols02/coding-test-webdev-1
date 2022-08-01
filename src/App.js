@@ -1,7 +1,24 @@
 import axios from 'axios';
 import './App.css';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    axios.get(`${apiBaseUrl()}/links`, authHdr())
+      .then(function (response) {   
+        setData(response.data)
+      })
+      .catch(err => console.err)
+    
+  }, [])
+
+  if(!data) {
+    return <div>Loading information...</div>
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -14,6 +31,27 @@ function App() {
         </p>
         <button onClick={getLinks}>Can Get Links</button>
         <button onClick={getLinkDetail}>Can Get Link Detail</button>
+        <table className='video-table'>
+          <tr>
+            <th>Published</th>
+            <th>Title</th>
+            <th>Source</th>
+            <th>SourceType</th>
+            <th>URL</th>
+          </tr>
+          {console.log(data.Links[30])}
+          {data.Links.map((data) => {
+              return (
+                <tr>
+                  <td>{new Date(data.Publishedts).toLocaleDateString()}</td>
+                  <td>{data.Title}</td>
+                  <td>{data.Source}</td>
+                  <td>{data.SourceType}</td>
+                  <td>{data.URL}</td> 
+                </tr>
+              )
+            })}
+        </table>
       </header>
     </div>
   );
@@ -47,20 +85,21 @@ function getLinkDetail() {
 async function apiGetChannelLinks() {
   return (
       axios.get(`${apiBaseUrl()}/links`, authHdr())
-      .then(function (response) {        
+      .then(function (response) {   
         return response.data;
       })
       .catch(function (error) {
         console.error("-- " + error);
         return null;
       })
-  );    
-}
-
-async function apiGetLinkDetail(linkId) {
-  return (
-      axios.get(`${apiBaseUrl()}/link/${linkId}`, authHdr())
-      .then(function (response) {        
+      );    
+    }
+    
+    async function apiGetLinkDetail(linkId) {
+      return (
+        axios.get(`${apiBaseUrl()}/link/${linkId}`, authHdr())
+        .then(function (response) {        
+        console.log(response.data)     
         return response.data;
       })
       .catch(function (error) {
