@@ -86,7 +86,7 @@ Include a way to close an open detail and return to full table visibility with n
 
 Return a copy of this code base with your changes in it. It should support **npm install** and **npm start** in order to view it.
 
-## Request Throttling Limits
+## Request Throttling Analysis
 
 The API enforces a request throttling limit that prohibits additional requests after a limit value is reached. Throttling is done per-minute and resets at the beginning of the next minute. "Minutes" are wall-clock minutes, not elapsed minutes. Meaning, if you are in minute 12:01 and hit your request limit, the counter resets at 12:02. 
 
