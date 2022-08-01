@@ -81,6 +81,11 @@ Some visibility to the rows of the table should remain so that clicking another 
 
 Include a way to close an open detail and return to full table visibility with no details open.
 
+
+### Deliverable
+
+Return this code base with your changes. It should support **npm install** and **npm start** in order to view it.
+
 ## Request Throttling Limits
 
 The API enforces a request throttling limit that prohibits additional requests after a limit value is reached. Throttling is done per-minute and resets at the beginning of the next minute. "Minutes" are wall-clock minutes, not elapsed minutes. Meaning, if you are in minute 12:01 and hit your request limit, the counter resets at 12:02. 
