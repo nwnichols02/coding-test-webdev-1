@@ -20,7 +20,13 @@ Scroll down to the function *apiBaseUrl()* and replace *api_base_url_goes_here* 
 
 Start the app with the usual **npm start** command.
 
-Your browser should open to localhost:3000 and display a black screen with some welcoming text and two buttons.  Display dev tools so you can see console log output.
+WARNING: You need a recent version of Node to run the web app. If you receive the following error,
+
+`ERROR in [eslint] Failed to load plugin 'flowtype' declared in 'package.json » eslint-config-react-app': Cannot find module 'eslint/use-at-your-own-risk'`
+
+it means you are probably on v12 of Node and need to upgrade it to v16. Alternately, you may be able to fix the error by deleting the eslintConfig element from package.json. 
+
+Assuming no such errors, your browser should open to localhost:3000 and display a black screen with some welcoming text and two buttons.  Display dev tools so you can see console log output.
 
 Click the button **Can Get Links**. In 5 to 10 seconds (up to a minute if the remote API hasn't been invoked for a couple hours), you should see a console output like this,
 
