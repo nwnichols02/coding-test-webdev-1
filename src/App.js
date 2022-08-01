@@ -71,7 +71,7 @@ async function apiGetLinkDetail(linkId) {
 }
 
 function authHdr() {
-  const key = "your_access_token_here";  // example: key = "373cn7cd89dddkd";
+  const key = "62d60811f8e28aca7e5d690a";  // example: key = "373cn7cd89dddkd";
   const config = {
       headers: {
           "Authorization": `Key ${key}`,
@@ -81,7 +81,7 @@ function authHdr() {
 }
 
 function apiBaseUrl() {
-  return "api_base_url_goes_here";  // example: https://something.com/api   --Do not include a trailing slash "/"
+  return "https://utilicodingtest2.azurewebsites.net/api";  // example: https://something.com/api   --Do not include a trailing slash "/"
 }
 
 export default App;
