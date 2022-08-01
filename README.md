@@ -8,7 +8,7 @@ This repository contains the shell application for this portion of the UtiliSour
 
 The test is intentionally designed with a lot of latitude for personal choices. You are being given only broad requirements so that you can show your coding style and design aesthetic.
 
-There is also an analysis section to the test at the bottom.
+There is also an analysis exercise at the bottom that forms a second part to the coding test.
 
 ## Getting Started
 
