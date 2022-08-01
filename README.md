@@ -8,7 +8,7 @@ This repository contains the shell application for this portion of the UtiliSour
 
 The test is intentionally designed with a lot of latitude for personal choices. You are being given only broad requirements so that you can show your coding style and design aesthetic.
 
-There is also an analysis section to the test at the bottom.
+There is also an analysis exercise at the bottom that forms a second part to the coding test.
 
 ## Getting Started
 
@@ -87,7 +87,12 @@ Some visibility to the rows of the table should remain so that clicking another 
 
 Include a way to close an open detail and return to full table visibility with no details open.
 
-## Request Throttling Limits
+
+### Deliverable
+
+Return a copy of this code base with your changes in it. It should support **npm install** and **npm start** in order to view it.
+
+## Request Throttling Analysis
 
 The API enforces a request throttling limit that prohibits additional requests after a limit value is reached. Throttling is done per-minute and resets at the beginning of the next minute. "Minutes" are wall-clock minutes, not elapsed minutes. Meaning, if you are in minute 12:01 and hit your request limit, the counter resets at 12:02. 
 
