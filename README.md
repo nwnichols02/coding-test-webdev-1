@@ -44,7 +44,7 @@ If you did not receive the success messages, get in touch ASAP so that we can ge
 
 ## Coding Test Requirements
 
-The data the API returns contains a series of links to YouTube videos for the Salomon TV channel. (That is why the Channels array contains only one element.) The data is for purposes of the coding test and has nothing to do with actual UtiliSource data. Note that the links are being retrieved from a database and will not change.
+The data the API returns a series of links to YouTube videos for the Salomon TV channel. (That is why the Channels array contains only one element.) The data is for purposes of the coding test and has nothing to do with actual UtiliSource data. Note that the links are being retrieved from a database and will not change.
 
 Here are the requirements to implement for the test:
 
