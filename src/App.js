@@ -1,6 +1,7 @@
 import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
+import Moment from 'react-moment';
 
 function App() {
 
@@ -39,11 +40,11 @@ function App() {
             <th>SourceType</th>
             <th>URL</th>
           </tr>
-          {console.log(data.Links[30])}
+          {/* {console.log(data.Links[30])} */}
           {data.Links.map((data) => {
               return (
                 <tr>
-                  <td>{new Date(data.Publishedts).toLocaleDateString()}</td>
+                  <td>{<Moment unix>{data.Publishedts}</Moment>}</td>
                   <td>{data.Title}</td>
                   <td>{data.Source}</td>
                   <td>{data.SourceType}</td>
