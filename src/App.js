@@ -47,7 +47,7 @@ function App() {
                   <td>{data.Title}</td>
                   <td>{data.Source}</td>
                   <td>{data.SourceType}</td>
-                  <td>{data.URL}</td> 
+                  <td><a href={data.URL} target="_blank" rel="noreferrer noopener">{data.URL}</a></td> 
                 </tr>
               )
             })}
