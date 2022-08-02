@@ -41,3 +41,14 @@
   /* text-align: center; */
   color: #61dafb;
 }
+
+.table-row {
+  height: 2rem;
+  background-color: orange;
+}
+
+.table-data {
+  height: 80px;
+  justify-content: space-between;
+  padding: 18px;
+}
