@@ -1,25 +1,36 @@
 import Moment from "react-moment";
 import "./App.css";
 import axios from "axios";
+import { useState } from "react";
+import PopUp from "./Popup";
 
-function Results({
-  data,
-  modalState,
-  toggleModalState,
-  selected,
-  setSelected,
-  apiBaseUrl,
-  authHdr,
-}) {
+let initialValues = {
+  Title: "",
+  SourceTimeStamp: "",
+  FullDescription: "",
+  ThumbURL: "",
+  Source: "",
+  SourceChannelUrl: "",
+  SourceChannelName: "",
+};
+
+function Results({ data, apiBaseUrl, authHdr }) {
+  const [modalState, setModalState] = useState(false);
+  const [selected, setSelected] = useState([]);
+
   const handleClick = (ID) => {
     axios
       .get(`${apiBaseUrl()}/link/${ID}`, authHdr())
       .then(function (response) {
+        // console.log(response.data);
         setSelected(response.data);
       })
       .catch((err) => console.err);
-
     toggleModalState();
+  };
+
+  const toggleModalState = () => {
+    setModalState(!modalState);
   };
 
   return data.Links.sort((a, b) =>
@@ -29,24 +40,9 @@ function Results({
       <tr
         className="table-row"
         key={data.ID}
-        onClick={() => handleClick(data.ID) && toggleModalState()}
+        onClick={() => handleClick(data.ID)}
       >
-        {
-          <div className={`modalBackground modalShowing-${modalState}`}>
-            <div className="modalInner">
-              <div className="modalText">
-                <button onClick={toggleModalState}>X</button>
-                <h2>{selected.Title}</h2>
-                <p>{selected.SourceTimestamp}</p>
-                <p>{selected.FullDescription}</p>
-                <p>{selected.ThumbURL}</p>
-                <p>{selected.Source}</p>
-                <p>{selected.SourceChannelName}</p>
-              </div>
-            </div>
-          </div>
-        }
-        <td className="table-data">
+        <td className="table-data" id="time">
           {<Moment unix>{data.Publishedts}</Moment>}
         </td>
         <td className="table-data">{data.Title}</td>
@@ -57,6 +53,11 @@ function Results({
             {data.URL}
           </a>
         </td>
+        <PopUp
+          modalState={modalState}
+          selected={selected}
+          toggleModalState={toggleModalState}
+        />
       </tr>
     );
   });

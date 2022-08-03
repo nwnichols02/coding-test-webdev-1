@@ -32,25 +32,32 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 .video-table th {
-  /* text-align: center; */
-  color: #61dafb;
+  color: #1361af;
+  font-size: larger;
 }
 
 .table-row {
-  height: 2rem;
-  background-color: orange;
+  background-color:
+    #f7941d;
+}
+
+.table-row:hover {
+  background-color:
+    #cc681e;
 }
 
 .table-data {
-  height: 80px;
+  height: 40px;
   justify-content: space-between;
   padding: 18px;
+  font-size: large;
 }
 
 .modalBackground {
@@ -59,38 +66,38 @@
   transition: opacity 0.4s ease-in-out;
   position: fixed;
   left: 0;
+  top: 10%;
   right: 0;
-  top: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: auto;
 }
 
 .modalShowing-true {
   opacity: 1;
-  pointer-events: initial !important;
+  pointer-events: auto ;
 }
 
 .modalInner {
   background: #1e2939;
-  width: 900px;
+  width: 600px;
   max-width: calc(100% - 60px);
   margin: auto;
   display: flex;
   flex-direction: row;
   color: white;
   text-align: left;
+  padding: 20px 50px 20px 20px;
+  /* overflow: auto; */
 }
 
 .modalText {
   padding: 15px;
+  text-align: center;
 }
 
 .modalText p {
-  font-size: xx-small;
+  font-size: small;
+  text-align: left;
 }
 
 .exitButton {
@@ -100,4 +107,23 @@
   background-color: transparent;
   border: 0;
   color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color:
+    #1361af;
+}
+
+span {
+  border: white 1px 1px;
+}
+
+.modalTimestamp {
+  display: flex;
+  justify-content: space-between;
 }

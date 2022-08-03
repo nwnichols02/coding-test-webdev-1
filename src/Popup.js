@@ -1,18 +1,29 @@
-import "./App.css";
 import Moment from "react-moment";
 
-function Popup({ closePopUp, data }) {
+function Popup({ modalState, toggleModalState, selected }) {
   return (
-    <div className="modal-background">
-      MODAL HERE!
-      <div className="modal-container"></div>
-      <button onClick={() => closePopUp()}>X</button>
-      <div className="modal-title"><h1>{data.Title}</h1></div>
-      <div className="modal-body">
-        <p>{<Moment unix>{data.Publishedts}</Moment>}</p>
-        <p>{data.Source}</p>
+    <div className={`modalBackground modalShowing-${modalState}`}>
+      <div className="modalInner">
+        <span>
+          <button onClick={() => toggleModalState()}>X</button>
+        </span>
+        <div className="modalText">
+          <h2>{selected.Title}</h2>
+          <p className="modalTimestamp">
+            {<Moment>{selected.SourceTimeStamp}</Moment>}
+            {selected.Source}
+          </p>
+          <a
+            href={selected.SourceChannelUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span>{selected.SourceChannelName}</span>
+          </a>
+          <p className="modal">{selected.FullDescription}</p>
+          <img src={selected.ThumbURL} alt="Video Thumbnail" />
+        </div>
       </div>
-      <div className="modal-footer"></div>
     </div>
   );
 }

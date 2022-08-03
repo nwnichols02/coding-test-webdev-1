@@ -5,8 +5,6 @@ import Results from "./Results";
 
 function App() {
   const [data, setData] = useState();
-  const [modalState, setModalState] = useState(false);
-  const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     axios
@@ -18,12 +16,8 @@ function App() {
   }, []);
 
   if (!data) {
-    return <div>Loading information...</div>;
+    return <div className="loading">Loading information...</div>;
   }
-
-  const toggleModalState = () => {
-    setModalState(!modalState);
-  };
 
   return (
     <div className="App">
@@ -46,13 +40,9 @@ function App() {
           {/* Working code sort by date and fetch details on click*/}
           <Results
             data={data}
-            modalState={modalState}
-            selected={selected}
             authHdr={authHdr}
             apiBaseUrl={apiBaseUrl}
-            setSelected={setSelected}
             apiGetLinkDetail={apiGetLinkDetail}
-            toggleModalState={toggleModalState}
           />
         </table>
       </header>
