@@ -19,10 +19,6 @@ function App() {
     return <div>Loading information...</div>;
   }
 
-  function compareNumbers(a, b) {
-    return b - a;
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -42,44 +38,27 @@ function App() {
             <th>URL</th>
           </tr>
           {/* {console.log(data.Links[30])} */}
-          {/* Working code minus sort by date */}
-          {/* {data.Links.map((data) => {
-              return (
-                <tr>
-                  <td>{<Moment unix>{data.Publishedts}</Moment>}</td>
-                  <td>{data.Title}</td>
-                  <td>{data.Source}</td>
-                  <td>{data.SourceType}</td>
-                  <td><a href={data.URL} target="_blank" rel="noreferrer noopener">{data.URL}</a></td> 
-                </tr>
-              )
-            })} */}
-          {
-            data.Links
-              .sort((a,b) => a.Publishedts > b.Publishedts ? 1 : -1)
-              .map((data) => {
-                return (
-                  <tr className="table-row">
-                    <td className="table-data">
-                      {<Moment unix>{data.Publishedts}</Moment>}
-                    </td>
-                    <td className="table-data">{data.Title}</td>
-                    <td className="table-data">{data.Source}</td>
-                    <td className="table-data">{data.SourceType}</td>
-                    <td className="table-data">
-                      <a
-                        href={data.URL}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                      >
-                        {data.URL}
-                      </a>
-                    </td>
-                  </tr>
-                );
-              })
-            // return b.Publishedts - a.Publishedts;
-          }
+          {/* Working code sort by date and fetch details on click*/}
+          {data.Links
+          .sort((a, b) =>
+            a.Publishedts > b.Publishedts ? 1 : -1
+          ).map((data) => {
+            return (
+              <tr className="table-row" onClick={() => apiGetLinkDetail(data.ID)}>
+                <td className="table-data">
+                  {<Moment unix>{data.Publishedts}</Moment>}
+                </td>
+                <td className="table-data">{data.Title}</td>
+                <td className="table-data">{data.Source}</td>
+                <td className="table-data">{data.SourceType}</td>
+                <td className="table-data">
+                  <a href={data.URL} target="_blank" rel="noreferrer noopener">
+                    {data.URL}
+                  </a>
+                </td>
+              </tr>
+            );
+          })}
         </table>
       </header>
     </div>
