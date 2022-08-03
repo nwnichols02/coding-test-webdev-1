@@ -1,10 +1,12 @@
 import axios from "axios";
 import "./App.css";
 import { useEffect, useState } from "react";
-import Moment from "react-moment";
+import Results from "./Results";
 
 function App() {
   const [data, setData] = useState();
+  const [modalState, setModalState] = useState(false);
+  const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     axios
@@ -18,6 +20,10 @@ function App() {
   if (!data) {
     return <div>Loading information...</div>;
   }
+
+  const toggleModalState = () => {
+    setModalState(!modalState);
+  };
 
   return (
     <div className="App">
@@ -37,28 +43,17 @@ function App() {
             <th>SourceType</th>
             <th>URL</th>
           </tr>
-          {/* {console.log(data.Links[30])} */}
           {/* Working code sort by date and fetch details on click*/}
-          {data.Links
-          .sort((a, b) =>
-            a.Publishedts > b.Publishedts ? 1 : -1
-          ).map((data) => {
-            return (
-              <tr className="table-row" onClick={() => apiGetLinkDetail(data.ID)}>
-                <td className="table-data">
-                  {<Moment unix>{data.Publishedts}</Moment>}
-                </td>
-                <td className="table-data">{data.Title}</td>
-                <td className="table-data">{data.Source}</td>
-                <td className="table-data">{data.SourceType}</td>
-                <td className="table-data">
-                  <a href={data.URL} target="_blank" rel="noreferrer noopener">
-                    {data.URL}
-                  </a>
-                </td>
-              </tr>
-            );
-          })}
+          <Results
+            data={data}
+            modalState={modalState}
+            selected={selected}
+            authHdr={authHdr}
+            apiBaseUrl={apiBaseUrl}
+            setSelected={setSelected}
+            apiGetLinkDetail={apiGetLinkDetail}
+            toggleModalState={toggleModalState}
+          />
         </table>
       </header>
     </div>
