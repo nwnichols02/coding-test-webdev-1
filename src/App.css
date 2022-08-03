@@ -127,3 +127,9 @@ span {
   display: flex;
   justify-content: space-between;
 }
+
+.loading {
+  text-size-adjust: large;
+  display: flex;
+  justify-content: center;
+}

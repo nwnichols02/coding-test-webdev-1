@@ -6,6 +6,9 @@ import Results from "./Results";
 function App() {
   const [data, setData] = useState();
 
+  // state for counter was used to determine request limit
+  // const [counter, setCounter] = useState(0);
+
   useEffect(() => {
     axios
       .get(`${apiBaseUrl()}/links`, authHdr())
@@ -13,11 +16,27 @@ function App() {
         setData(response.data);
       })
       .catch((err) => console.err);
-  }, []);
+  });
 
   if (!data) {
-    return <div className="loading">Loading information...</div>;
+    return <div className="loading">Loading information please wait...</div>;
   }
+
+  // i used this function a couple of times to find the limit request of the api. I believe the limit is 28 requests per minute.
+
+  // function limitTester() {
+  //   setTimeout(() => {
+  //     for (let i = 0; i < 10; i++) {
+  //       apiGetChannelLinks();
+  //       axios.get(`${apiBaseUrl()}/links`, authHdr()).then(function (response) {
+  //         setData(response.data);
+  //       });
+  //       console.log(counter +1)
+  //       setCounter(counter + 1);
+  //     }
+  //     console.log(`count ${counter}`);
+  //   }, 1000);
+  // }
 
   return (
     <div className="App">
@@ -29,6 +48,8 @@ function App() {
         </p>
         <button onClick={getLinks}>Can Get Links</button>
         <button onClick={getLinkDetail}>Can Get Link Detail</button>
+        {/* use this button below to run limitTester function above */}
+        {/* <button onClick={limitTester}>Run Request Limiter - see console</button> */}
         <table className="video-table">
           <tr>
             <th>Published</th>
@@ -37,7 +58,6 @@ function App() {
             <th>SourceType</th>
             <th>URL</th>
           </tr>
-          {/* Working code sort by date and fetch details on click*/}
           <Results
             data={data}
             authHdr={authHdr}
